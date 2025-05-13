@@ -1,95 +1,66 @@
 ---
-title: 'Dynamic Typing'
-description: 'Learn about type conversion and dynamic typing in IdzeyKL'
+title: 'Динамическая типизация'
+description: 'Динамическая типизация и преобразование типов в IdzeyKL (строго по INSTRUCTIONS.md)'
 ---
 
-# Dynamic Typing
+# Динамическая типизация
 
-IdzeyKL uses dynamic typing, which means that variable types are determined at runtime and can change during program execution. This section explains how type conversion works in IdzeyKL.
+IdzeyKL использует динамическую типизацию, что означает, что тип переменной определяется во время выполнения и может изменяться.
 
-## Type Conversion
+## Автоматическое преобразование типов
 
-### Numeric Conversions
+Язык автоматически преобразует типы при необходимости:
 
-When performing arithmetic operations, IdzeyKL automatically converts values to numbers when possible:
+1. **Числовые преобразования**:
+   - Строки, содержащие числа, автоматически преобразуются в числа при арифметических операциях (кроме `+`)
+   - Логические значения преобразуются в числа: `true` → `1`, `false` → `0`
+   - `null` преобразуется в `0`
+2. **Строковые преобразования**:
+   - При конкатенации с помощью оператора `+` любые значения преобразуются в строки
+   - Числа преобразуются в их строковое представление
+   - Логические значения преобразуются в строки "true" или "false"
+   - `null` преобразуется в строку "null"
+3. **Логические преобразования**:
+   - В логическом контексте (условия в `if`, `while`, `for`) значения преобразуются в логические
+   - Числа: `0` → `false`, любое ненулевое число → `true`
+   - Строки: пустая строка `""` → `false`, непустая строка → `true`
+   - Массивы: пустой массив `{}` → `false`, непустой массив → `true`
+   - `null` → `false`
 
-```ikl
-var a = "10";
-var b = 5;
-var sum = a + b;      // String concatenation: "105"
-var product = a * b;  // Numeric multiplication: 50
+## Автоматический выбор типа для чисел
+
+Язык автоматически выбирает наиболее подходящий тип для чисел:
+
+1. **Целые числа (INTEGER)**:
+   - Используются, когда значение можно точно представить как целое число
+   - Пример: `10 / 2` → `5` (целое число)
+2. **Числа с плавающей точкой (NUMBER)**:
+   - Используются, когда значение требует дробной части
+   - Пример: `10 / 3` → `3.333...` (число с плавающей точкой)
+
+## Примеры
+
+```
+var a = 10;
+var b = "20";
+var c = a + b;  // Строковая конкатенация: "1020"
+println("a + b = " + c);
+
+var d = a * b;  // Числовое умножение: 200
+println("a * b = " + d);
+
+var e = 10 / 2; // Целочисленное деление: 5
+println("10 / 2 = " + e);
+
+var f = 10 / 3; // Деление с плавающей точкой: 3.333...
+println("10 / 3 = " + f);
 ```
 
-#### Boolean to Number
-```ikl
-var trueNum = true + 1;   // 2
-var falseNum = false + 1; // 1
-```
+## Проверка типа
 
-#### Null to Number
-```ikl
-var nullNum = null + 5; // 5
-```
+### Оператор typeof
 
-### String Conversions
-
-The `+` operator performs string concatenation, converting all operands to strings:
-
-```ikl
-var num = 42;
-var str = "The answer is " + num; // "The answer is 42"
-```
-
-#### Number to String
-```ikl
-var num = 123;
-var str = "" + num; // "123"
-```
-
-#### Boolean to String
-```ikl
-var bool = true;
-var str = "" + bool; // "true"
-```
-
-#### Null to String
-```ikl
-var str = "" + null; // "null"
-```
-
-### Boolean Conversions
-
-In boolean contexts (if conditions, while loops), values are automatically converted to booleans:
-
-#### Number to Boolean
-```ikl
-if (0) { /* never executed */ }
-if (1) { /* always executed */ }
-if (-1) { /* always executed */ }
-```
-
-#### String to Boolean
-```ikl
-if ("") { /* never executed */ }
-if ("hello") { /* always executed */ }
-```
-
-#### Array to Boolean
-```ikl
-if ({}) { /* never executed */ }
-if ({1, 2, 3}) { /* always executed */ }
-```
-
-#### Null to Boolean
-```ikl
-if (null) { /* never executed */ }
-```
-
-## Type Checking
-
-### Using typeof
-
-The `typeof` operator returns the type of a value as a string:
+Оператор `typeof` возвращает тип значения в виде строки:
 
 ```ikl
 var num = 42;
@@ -105,151 +76,52 @@ println(typeof(arr));  // "array"
 println(typeof(n));    // "null"
 ```
 
-### Type Checking Functions
+## Рекомендации
 
-```ikl
-func isNumber(value) {
-    return typeof(value) == "number";
-}
-
-func isString(value) {
-    return typeof(value) == "string";
-}
-
-func isBoolean(value) {
-    return typeof(value) == "boolean";
-}
-
-func isArray(value) {
-    return typeof(value) == "array";
-}
-
-func isNull(value) {
-    return typeof(value) == "null";
-}
-```
-
-## Common Type Conversion Patterns
-
-### Safe Number Conversion
-```ikl
-func toNumber(value) {
-    if (typeof(value) == "number") {
-        return value;
-    }
-    if (typeof(value) == "string") {
-        var num = value * 1;
-        if (num == num) { // Check for NaN
-            return num;
-        }
-    }
-    return 0;
-}
-```
-
-### Safe String Conversion
-```ikl
-func toString(value) {
-    if (value == null) {
-        return "null";
-    }
-    return "" + value;
-}
-```
-
-### Safe Boolean Conversion
-```ikl
-func toBoolean(value) {
-    if (typeof(value) == "boolean") {
-        return value;
-    }
-    if (typeof(value) == "number") {
-        return value != 0;
-    }
-    if (typeof(value) == "string") {
-        return value != "";
-    }
-    if (typeof(value) == "array") {
-        return value.length > 0;
-    }
-    return false;
-}
-```
-
-## Best Practices
-
-1. **Be explicit about type conversions**:
+1. **Будьте явны при преобразовании типов**:
    ```ikl
-   // Good
-   var num = toNumber(input);
-   
-   // Bad
-   var num = input * 1;
+   // Хорошо
+   var num = value * 1;
+   // Лучше
+   func toNumber(value) {
+       if (typeof(value) == "number") return value;
+       if (typeof(value) == "string") return value * 1;
+       return 0;
+   }
    ```
-
-2. **Check types before operations**:
+2. **Проверяйте тип перед операциями**:
    ```ikl
-   // Good
    if (typeof(value) == "number") {
        result = value * 2;
    }
-   
-   // Bad
-   result = value * 2;
    ```
-
-3. **Use type checking functions**:
+3. **Документируйте ожидаемые типы**:
    ```ikl
-   // Good
-   if (isNumber(value)) {
-       // Handle number
-   }
-   
-   // Bad
-   if (typeof(value) == "number") {
-       // Handle number
-   }
-   ```
-
-4. **Document expected types**:
-   ```ikl
-   // Parameters:
-   //   value: number|string - The value to convert
-   // Returns: number - The converted number
+   // Параметры:
+   //   value: number|string - значение для преобразования
+   // Возвращает: number
    func convertToNumber(value) {
-       return toNumber(value);
+       return value * 1;
    }
    ```
 
-## Common Pitfalls
+## Типичные ошибки
 
-1. **String concatenation with numbers**:
+1. **Конкатенация строк с числами**:
    ```ikl
-   // Unexpected result
    var result = "2" + 2; // "22"
-   
-   // Correct way
-   var result = toNumber("2") + 2; // 4
+   var result = ("2" * 1) + 2; // 4
    ```
-
-2. **Boolean conversion in conditions**:
+2. **Преобразование к логическому типу**:
    ```ikl
-   // Unexpected behavior
-   if ("0") { /* executed */ }
-   
-   // Correct way
-   if (toBoolean("0")) { /* not executed */ }
+   if ("0") { /* выполнится */ }
+   if (parseInt("0")) { /* не выполнится */ }
    ```
-
-3. **Null handling**:
+3. **Работа с null**:
    ```ikl
-   // Potential error
    var result = null + 5; // 5
-   
-   // Safer way
-   var result = (null == null) ? 5 : null + 5;
    ```
 
-## Next Steps
+## Дальнейшие шаги
 
-Now that you understand dynamic typing, you can learn about [Built-in Functions](/idzeykl/built-in-functions) to use the standard library features. 
+Теперь вы знаете, как работает динамическая типизация. Перейдите к разделу [Встроенные функции](/idzeykl/built-in-functions), чтобы узнать о стандартных возможностях языка. 

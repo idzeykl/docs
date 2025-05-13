@@ -1,92 +1,87 @@
 ---
-title: 'Control Flow'
-description: 'Learn about conditional statements and loops in IdzeyKL'
+title: 'Управляющие конструкции'
+description: 'Условные операторы и циклы в IdzeyKL (строго по INSTRUCTIONS.md)'
 ---
 
-# Control Flow
+# Управляющие конструкции
 
-Control flow statements allow you to control the execution path of your program. IdzeyKL supports various conditional statements and loops.
+Управляющие конструкции позволяют управлять ходом выполнения программы. IdzeyKL поддерживает различные условные операторы и циклы.
 
-## Conditional Statements
+## Условный оператор if-else
 
-### If-Else Statement
-
-The `if-else` statement allows you to execute different code blocks based on conditions.
-
-```ikl
-if (condition) {
-    // Code to execute if condition is true
+Синтаксис:
+```
+if (условие) {
+    // Код, выполняемый, если условие истинно
 } else {
-    // Code to execute if condition is false
+    // Код, выполняемый, если условие ложно
 }
 ```
 
-Example:
-```ikl
+Пример:
+```
 var age = 18;
 if (age >= 18) {
-    println("Adult");
+    println("Совершеннолетний");
 } else {
-    println("Minor");
+    println("Несовершеннолетний");
 }
 ```
 
-You can also use the shorter form without an else block:
-```ikl
-if (condition) {
-    // Code to execute if condition is true
+Также поддерживается сокращённая форма без блока else:
+```
+if (условие) {
+    // Код, выполняемый, если условие истинно
 }
 ```
 
-### Nested If Statements
+### Вложенные if
 
-You can nest if statements to create more complex conditions:
-```ikl
+Можно вкладывать if друг в друга для сложных условий:
+```
 var age = 20;
 var hasLicense = true;
 
 if (age >= 18) {
     if (hasLicense) {
-        println("Can drive");
+        println("Может водить");
     } else {
-        println("Need to get a license");
+        println("Нужно получить права");
     }
 } else {
-    println("Too young to drive");
+    println("Слишком молод для вождения");
 }
 ```
 
-## Loops
+## Циклы
 
-### For Loop
+### Цикл for
 
-The `for` loop is used when you know how many times you want to execute a block of code.
-
-```ikl
-for (initialization; condition; increment) {
-    // Code to execute
+Синтаксис:
+```
+for (инициализация; условие; инкремент) {
+    // Тело цикла
 }
 ```
 
-Example:
-```ikl
+Пример:
+```
 for (var i = 0; i < 5; i = i + 1) {
     println(i);
 }
 ```
 
-### While Loop
+### Цикл while
 
-The `while` loop is used when you want to execute a block of code as long as a condition is true.
-
-```ikl
-while (condition) {
-    // Code to execute
+Синтаксис:
+```
+while (условие) {
+    // Тело цикла
 }
 ```
 
-Example:
-```ikl
+Пример:
+```
 var i = 0;
 while (i < 5) {
     println(i);
@@ -94,12 +89,12 @@ while (i < 5) {
 }
 ```
 
-### Loop Control Statements
+### Операторы управления циклом
 
-#### Break
+#### break
 
-The `break` statement exits the loop immediately:
-```ikl
+Оператор `break` немедленно завершает цикл:
+```
 for (var i = 0; i < 10; i = i + 1) {
     if (i == 5) {
         break;
@@ -108,10 +103,10 @@ for (var i = 0; i < 10; i = i + 1) {
 }
 ```
 
-#### Continue
+#### continue
 
-The `continue` statement skips the rest of the current iteration and continues with the next one:
-```ikl
+Оператор `continue` пропускает текущую итерацию и переходит к следующей:
+```
 for (var i = 0; i < 5; i = i + 1) {
     if (i == 2) {
         continue;
@@ -120,32 +115,32 @@ for (var i = 0; i < 5; i = i + 1) {
 }
 ```
 
-## Common Patterns
+## Типовые шаблоны
 
-### Counting Up
-```ikl
+### Счётчик вверх
+```
 for (var i = 0; i < n; i = i + 1) {
-    // Code
+    // Код
 }
 ```
 
-### Counting Down
-```ikl
+### Счётчик вниз
+```
 for (var i = n - 1; i >= 0; i = i - 1) {
-    // Code
+    // Код
 }
 ```
 
-### Iterating Over Arrays
-```ikl
+### Перебор массива
+```
 var numbers = {1, 2, 3, 4, 5};
 for (var i = 0; i < numbers.length; i = i + 1) {
     println(numbers[i]);
 }
 ```
 
-### Conditional Loop
-```ikl
+### Условный цикл
+```
 var found = false;
 var i = 0;
 while (!found && i < array.length) {
@@ -156,44 +151,41 @@ while (!found && i < array.length) {
 }
 ```
 
-## Best Practices
+## Рекомендации
 
-1. **Use meaningful conditions**:
-   ```ikl
-   // Good
+1. **Используйте осмысленные условия**:
+   ```
+   // Хорошо
    if (age >= 18) { ... }
    
-   // Bad
+   // Плохо
    if (age > 17) { ... }
    ```
-
-2. **Avoid deep nesting**:
-   ```ikl
-   // Good
+2. **Избегайте глубокой вложенности**:
+   ```
+   // Хорошо
    if (!isValid) {
        return;
    }
-   // Main logic here
+   // Основная логика
    
-   // Bad
+   // Плохо
    if (isValid) {
-       // Main logic here
+       // Основная логика
    }
    ```
-
-3. **Use appropriate loop types**:
-   - Use `for` when you know the number of iterations
-   - Use `while` when the number of iterations is unknown
-
-4. **Initialize variables before loops**:
-   ```ikl
-   // Good
+3. **Используйте подходящий тип цикла**:
+   - `for` — когда известно количество итераций
+   - `while` — когда количество итераций заранее неизвестно
+4. **Инициализируйте переменные до цикла**:
+   ```
+   // Хорошо
    var sum = 0;
    for (var i = 0; i < n; i = i + 1) {
        sum = sum + i;
    }
    ```
 
-## Next Steps
+## Дальнейшие шаги
 
-Now that you understand control flow, you can learn about [Functions](/idzeykl/functions) to organize your code into reusable blocks. 
+Теперь вы знаете, как управлять потоком выполнения программы. Перейдите к разделу [Функции](/idzeykl/functions), чтобы узнать о создании и использовании функций. 

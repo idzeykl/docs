@@ -1,95 +1,55 @@
 ---
-title: 'Basic Syntax'
-description: 'Learn about the fundamental syntax rules and data types in IdzeyKL'
+title: 'Основы синтаксиса'
+description: 'Базовые правила синтаксиса и типы данных в IdzeyKL (строго по INSTRUCTIONS.md)'
 ---
 
-# Basic Syntax
+# Основы синтаксиса
 
-IdzeyKL has a straightforward syntax that's easy to learn and use. This section covers the basic syntax rules and data types supported by the language.
+- Каждая инструкция должна заканчиваться точкой с запятой (`;`)
+- Блоки кода заключаются в фигурные скобки (`{}`)
+- Комментарии начинаются с двойного слеша (`//`)
+- Идентификаторы (имена переменных, функций) могут содержать буквы, цифры и символ подчеркивания, но не могут начинаться с цифры
 
-## Syntax Rules
-
-- Each statement must end with a semicolon (`;`)
-- Code blocks are enclosed in curly braces (`{}`)
-- Comments start with double forward slashes (`//`)
-- Identifiers (variable and function names) can contain letters, numbers, and underscores, but cannot start with a number
-
-Example:
-```ikl
-// This is a comment
-var x = 10; // Variable declaration
+Пример:
+```
+// Это комментарий
+var x = 10; // Объявление переменной
 ```
 
-## Data Types
+# Типы данных
 
-IdzeyKL supports the following data types:
+IdzeyKL поддерживает следующие типы данных:
 
-### Numbers
+1. **Числа**:
+   - **Целые числа (INTEGER)**: `10`, `42`, `-5`
+   - **Числа с плавающей точкой (NUMBER)**: `3.14`, `-0.5`, `1.0`
+2. **Строки (STRING)**: Последовательности символов, заключённые в двойные кавычки
+   - Пример: `"Hello, World!"`, `"123"`
+3. **Логические значения (BOOLEAN)**: `true` или `false`
+4. **Массивы (ARRAY)**: Упорядоченные коллекции значений
+   - Пример: `{1, 2, 3}`, `{"a", "b", "c"}`
+5. **Null**: Специальное значение `null`, обозначающее отсутствие значения
+6. **Функции (FUNCTION)**: Именованные блоки кода, которые можно вызывать
 
-- **Integers (INTEGER)**: `10`, `42`, `-5`
-- **Floating-point numbers (NUMBER)**: `3.14`, `-0.5`, `1.0`
+## Преобразование типов
 
-### Strings
+Язык автоматически преобразует типы при необходимости:
 
-Strings are sequences of characters enclosed in double quotes:
-```ikl
-var message = "Hello, World!";
-var number = "123"; // This is a string, not a number
-```
-
-### Booleans
-
-Boolean values are either `true` or `false`:
-```ikl
-var isActive = true;
-var isComplete = false;
-```
-
-### Arrays
-
-Arrays are ordered collections of values:
-```ikl
-var numbers = {1, 2, 3};
-var mixed = {"a", 1, true};
-```
-
-### Null
-
-The special value `null` represents the absence of a value:
-```ikl
-var empty = null;
-```
-
-### Functions
-
-Functions are first-class citizens in IdzeyKL:
-```ikl
-func add(a, b) {
-    return a + b;
-}
-```
-
-## Type Conversion
-
-IdzeyKL automatically converts between types when needed:
-
-1. **Numeric Conversions**:
-   - Strings containing numbers are automatically converted to numbers in arithmetic operations (except `+`)
-   - Boolean values convert to numbers: `true` → `1`, `false` → `0`
-   - `null` converts to `0`
-
-2. **String Conversions**:
-   - Any value can be converted to a string using the `+` operator
-   - Numbers convert to their string representation
-   - Booleans convert to `"true"` or `"false"`
-   - `null` converts to `"null"`
-
-3. **Boolean Conversions**:
-   - Numbers: `0` → `false`, any non-zero number → `true`
-   - Strings: empty string `""` → `false`, non-empty string → `true`
-   - Arrays: empty array `{}` → `false`, non-empty array → `true`
+1. **Числовые преобразования**:
+   - Строки, содержащие числа, автоматически преобразуются в числа при арифметических операциях (кроме `+`)
+   - Логические значения: `true` → `1`, `false` → `0`
+   - `null` → `0`
+2. **Строковые преобразования**:
+   - При конкатенации с помощью `+` любые значения преобразуются в строки
+   - Числа → строковое представление
+   - Логические значения → "true" или "false"
+   - `null` → "null"
+3. **Логические преобразования**:
+   - Числа: `0` → `false`, любое ненулевое число → `true`
+   - Строки: пустая строка `""` → `false`, непустая строка → `true`
+   - Массивы: пустой массив `{}` → `false`, непустой массив → `true`
    - `null` → `false`
 
-## Next Steps
+## Дальнейшие шаги
 
-Now that you understand the basic syntax and data types, you can learn about [Variables and Operators](/idzeykl/variables) to start writing more complex programs. 
+Теперь вы знаете основы синтаксиса и типы данных. Перейдите к разделу [Переменные и операторы](/idzeykl/variables), чтобы узнать больше. 

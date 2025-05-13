@@ -1,70 +1,77 @@
 ---
-title: 'Functions'
-description: 'Learn how to create and use functions in IdzeyKL'
+title: 'Функции'
+description: 'Объявление и использование функций в IdzeyKL (строго по INSTRUCTIONS.md)'
 ---
 
-# Functions
+# Функции
 
-Functions are reusable blocks of code that perform specific tasks. They help organize code and make it more maintainable.
+Функции объявляются с помощью ключевого слова `func`, за которым следует имя функции, список параметров в круглых скобках и тело функции в фигурных скобках.
 
-## Function Declaration
-
-Functions are declared using the `func` keyword, followed by the function name, parameters in parentheses, and the function body in curly braces.
-
-```ikl
-func functionName(parameter1, parameter2, ...) {
-    // Function body
-    return value; // Optional
+Синтаксис:
+```
+func имя_функции(параметр1, параметр2, ...) {
+    // Тело функции
+    return значение; // Опционально
 }
 ```
 
-### Basic Function
-
-```ikl
-func greet(name) {
-    return "Hello, " + name + "!";
+Пример:
+```
+func add(a, b) {
+    return a + b;
 }
 
-var message = greet("John"); // "Hello, John!"
+var result = add(5, 3); // result = 8
 ```
 
-### Function with Multiple Parameters
+Функции могут возвращать значения с помощью оператора `return`. Если функция не содержит оператора `return`, она неявно возвращает `null`.
+
+## Объявление функции
+
+Функции объявляются с помощью ключевого слова `func`, за которым следует имя функции, список параметров в круглых скобках и тело функции в фигурных скобках.
+
+```ikl
+func имя_функции(параметр1, параметр2, ...) {
+    // Тело функции
+    return значение; // Опционально
+}
+```
+
+### Пример функции
 
 ```ikl
 func add(a, b) {
     return a + b;
 }
 
-var sum = add(5, 3); // 8
+var result = add(5, 3); // result = 8
 ```
 
-### Function without Parameters
+### Функция без параметров
 
 ```ikl
-func getCurrentTime() {
-    return "12:00 PM";
+func sayHello() {
+    println("Привет!");
 }
 
-var time = getCurrentTime();
+sayHello();
 ```
 
-### Function without Return Value
+### Функция без return
 
-If a function doesn't have a `return` statement, it implicitly returns `null`:
+Если функция не содержит оператора `return`, она неявно возвращает `null`:
 
 ```ikl
 func printMessage(message) {
     println(message);
 }
 
-var result = printMessage("Hello"); // result is null
+var result = printMessage("Hello"); // result = null
 ```
 
-## Function Parameters
+## Параметры функции
 
-### Required Parameters
-
-All parameters in IdzeyKL are required. If you call a function with fewer arguments than parameters, the missing arguments will be `null`:
+Все параметры в IdzeyKL обязательны. Если при вызове функции указано меньше аргументов, недостающие параметры будут равны `null`.
 
 ```ikl
 func greet(name, title) {
@@ -74,9 +81,9 @@ func greet(name, title) {
 var message = greet("John"); // "Hello, null John!"
 ```
 
-### Parameter Types
+## Динамическая типизация параметров
 
-IdzeyKL is dynamically typed, so parameters can accept any type of value:
+Параметры функции могут принимать значения любого типа:
 
 ```ikl
 func processValue(value) {
@@ -92,9 +99,9 @@ var numResult = processValue(5);    // 10
 var strResult = processValue("Hi"); // "HiHi"
 ```
 
-## Return Values
+## Возврат значения
 
-### Single Return Value
+Функции могут возвращать значения с помощью оператора `return`. Если return не указан, возвращается `null`.
 
 ```ikl
 func square(n) {
@@ -104,9 +111,9 @@ func square(n) {
 var result = square(4); // 16
 ```
 
-### Early Return
+### Ранний выход из функции
 
-You can use `return` to exit a function early:
+Можно использовать `return` для досрочного выхода:
 
 ```ikl
 func isPositive(n) {
@@ -117,94 +124,87 @@ func isPositive(n) {
 }
 ```
 
-## Function Scope
+## Область видимости
 
-Variables declared inside a function are local to that function:
+Переменные, объявленные внутри функции, доступны только в этой функции:
 
 ```ikl
 func test() {
-    var x = 10; // Local variable
+    var x = 10; // Локальная переменная
     println(x);
 }
 
-test(); // Prints 10
-println(x); // Error: x is not defined
+test(); // Выведет 10
+println(x); // Ошибка: x не определена
 ```
 
-## Function Best Practices
+## Рекомендации по функциям
 
-1. **Use descriptive names**:
+1. **Используйте осмысленные имена**:
    ```ikl
-   // Good
+   // Хорошо
    func calculateTotal(items) { ... }
-   
-   // Bad
+   // Плохо
    func calc(x) { ... }
    ```
-
-2. **Keep functions focused**:
+2. **Делайте функции короткими и сфокусированными**:
    ```ikl
-   // Good
+   // Хорошо
    func calculateArea(width, height) {
        return width * height;
    }
-   
-   // Bad
+   // Плохо
    func processData(data) {
-       // Too many responsibilities
+       // Слишком много задач
        validateData(data);
        calculateStatistics(data);
        saveToDatabase(data);
        sendNotification(data);
    }
    ```
-
-3. **Use meaningful parameter names**:
+3. **Используйте осмысленные имена параметров**:
    ```ikl
-   // Good
+   // Хорошо
    func greet(userName) { ... }
-   
-   // Bad
+   // Плохо
    func greet(x) { ... }
    ```
-
-4. **Document your functions**:
+4. **Документируйте функции**:
    ```ikl
-   // Good
-   // Calculates the area of a rectangle
-   // Parameters:
-   //   width: number - The width of the rectangle
-   //   height: number - The height of the rectangle
-   // Returns: number - The area of the rectangle
+   // Вычисляет площадь прямоугольника
+   // Параметры:
+   //   width: number - ширина
+   //   height: number - высота
+   // Возвращает: number - площадь
    func calculateArea(width, height) {
        return width * height;
    }
    ```
 
-## Common Function Patterns
+## Типовые шаблоны функций
 
-### Validation Function
+### Проверка значения
 ```ikl
 func isValidAge(age) {
     return age >= 0 && age <= 120;
 }
 ```
 
-### Calculation Function
+### Вычисление значения
 ```ikl
 func calculateBMI(weight, height) {
     return weight / (height * height);
 }
 ```
 
-### Transformation Function
+### Форматирование
 ```ikl
 func formatName(firstName, lastName) {
     return firstName + " " + lastName;
 }
 ```
 
-### Conditional Function
+### Условная логика
 ```ikl
 func getGrade(score) {
     if (score >= 90) {
@@ -219,6 +219,6 @@ func getGrade(score) {
 }
 ```
 
-## Next Steps
+## Дальнейшие шаги
 
-Now that you understand functions, you can learn about [Arrays](/idzeykl/arrays) to work with collections of data. 
+Теперь вы знаете, как создавать и использовать функции. Перейдите к разделу [Массивы](/idzeykl/arrays), чтобы узнать о работе с коллекциями данных. 
