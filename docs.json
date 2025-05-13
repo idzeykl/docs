@@ -11,30 +11,35 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "IdzeyKL",
+        "tab": "Документация IdzeyKL",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Введение и основы",
             "pages": [
-              "idzeykl/index",
-              "idzeykl/syntax",
-              "idzeykl/variables"
+              "docs/index",
+              "docs/syntax"
             ]
           },
           {
-            "group": "Core Concepts",
+            "group": "Базовые конструкции",
             "pages": [
-              "idzeykl/control-flow",
-              "idzeykl/functions",
-              "idzeykl/arrays",
-              "idzeykl/dynamic-typing"
+              "docs/variables",
+              "docs/control-flow",
+              "docs/functions"
             ]
           },
           {
-            "group": "Reference",
+            "group": "Структуры данных и типизация",
             "pages": [
-              "idzeykl/built-in-functions",
-              "idzeykl/examples"
+              "docs/arrays",
+              "docs/dynamic-typing"
+            ]
+          },
+          {
+            "group": "Справочник",
+            "pages": [
+              "docs/built-in-functions",
+              "docs/examples"
             ]
           }
         ]
