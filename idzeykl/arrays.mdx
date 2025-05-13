@@ -1,0 +1,226 @@
+---
+title: 'Arrays'
+description: 'Learn how to work with arrays in IdzeyKL'
+---
+
+# Arrays
+
+Arrays in IdzeyKL are ordered collections of values. They can contain values of any type, including other arrays.
+
+## Creating Arrays
+
+Arrays are created using curly braces `{}`:
+
+```ikl
+var numbers = {1, 2, 3, 4, 5};
+var mixed = {1, "two", true, null};
+var empty = {};
+```
+
+## Accessing Array Elements
+
+Array elements are accessed using square brackets `[]` with a zero-based index:
+
+```ikl
+var numbers = {10, 20, 30, 40, 50};
+var first = numbers[0];  // 10
+var third = numbers[2];  // 30
+var last = numbers[4];   // 50
+```
+
+## Modifying Arrays
+
+### Changing Elements
+
+You can modify array elements by assigning new values:
+
+```ikl
+var numbers = {10, 20, 30};
+numbers[1] = 25;  // numbers is now {10, 25, 30}
+```
+
+### Array Length
+
+The `length` property returns the number of elements in an array:
+
+```ikl
+var numbers = {1, 2, 3, 4, 5};
+var count = numbers.length;  // 5
+```
+
+## Array Operations
+
+### Iterating Over Arrays
+
+Using a for loop:
+```ikl
+var numbers = {1, 2, 3, 4, 5};
+for (var i = 0; i < numbers.length; i = i + 1) {
+    println(numbers[i]);
+}
+```
+
+### Finding Elements
+
+```ikl
+func findElement(array, target) {
+    for (var i = 0; i < array.length; i = i + 1) {
+        if (array[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+var numbers = {10, 20, 30, 40, 50};
+var index = findElement(numbers, 30);  // 2
+```
+
+### Summing Elements
+
+```ikl
+func sumArray(array) {
+    var total = 0;
+    for (var i = 0; i < array.length; i = i + 1) {
+        total = total + array[i];
+    }
+    return total;
+}
+
+var numbers = {1, 2, 3, 4, 5};
+var sum = sumArray(numbers);  // 15
+```
+
+## Multidimensional Arrays
+
+Arrays can contain other arrays, creating multidimensional structures:
+
+```ikl
+var matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+var element = matrix[1][2];  // 6
+```
+
+### Creating a 2D Array
+
+```ikl
+func create2DArray(rows, cols) {
+    var array = {};
+    for (var i = 0; i < rows; i = i + 1) {
+        var row = {};
+        for (var j = 0; j < cols; j = j + 1) {
+            row[j] = 0;
+        }
+        array[i] = row;
+    }
+    return array;
+}
+
+var grid = create2DArray(3, 3);
+```
+
+## Common Array Patterns
+
+### Finding Maximum Value
+
+```ikl
+func findMax(array) {
+    if (array.length == 0) {
+        return null;
+    }
+    var max = array[0];
+    for (var i = 1; i < array.length; i = i + 1) {
+        if (array[i] > max) {
+            max = array[i];
+        }
+    }
+    return max;
+}
+```
+
+### Finding Minimum Value
+
+```ikl
+func findMin(array) {
+    if (array.length == 0) {
+        return null;
+    }
+    var min = array[0];
+    for (var i = 1; i < array.length; i = i + 1) {
+        if (array[i] < min) {
+            min = array[i];
+        }
+    }
+    return min;
+}
+```
+
+### Counting Occurrences
+
+```ikl
+func countOccurrences(array, target) {
+    var count = 0;
+    for (var i = 0; i < array.length; i = i + 1) {
+        if (array[i] == target) {
+            count = count + 1;
+        }
+    }
+    return count;
+}
+```
+
+## Array Best Practices
+
+1. **Check array bounds**:
+   ```ikl
+   func safeGet(array, index) {
+       if (index >= 0 && index < array.length) {
+           return array[index];
+       }
+       return null;
+   }
+   ```
+
+2. **Initialize arrays properly**:
+   ```ikl
+   // Good
+   var numbers = {1, 2, 3};
+   
+   // Bad
+   var numbers = {};
+   numbers[0] = 1;
+   numbers[1] = 2;
+   numbers[2] = 3;
+   ```
+
+3. **Use meaningful variable names**:
+   ```ikl
+   // Good
+   var studentScores = {85, 90, 95};
+   
+   // Bad
+   var a = {85, 90, 95};
+   ```
+
+4. **Document array operations**:
+   ```ikl
+   // Calculates the average of an array of numbers
+   // Parameters:
+   //   numbers: array - Array of numbers
+   // Returns: number - The average value
+   func calculateAverage(numbers) {
+       var sum = 0;
+       for (var i = 0; i < numbers.length; i = i + 1) {
+           sum = sum + numbers[i];
+       }
+       return sum / numbers.length;
+   }
+   ```
+
+## Next Steps
+
+Now that you understand arrays, you can learn about [Dynamic Typing](/idzeykl/dynamic-typing) to understand how IdzeyKL handles different data types. 

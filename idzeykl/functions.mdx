@@ -1,0 +1,224 @@
+---
+title: 'Functions'
+description: 'Learn how to create and use functions in IdzeyKL'
+---
+
+# Functions
+
+Functions are reusable blocks of code that perform specific tasks. They help organize code and make it more maintainable.
+
+## Function Declaration
+
+Functions are declared using the `func` keyword, followed by the function name, parameters in parentheses, and the function body in curly braces.
+
+```ikl
+func functionName(parameter1, parameter2, ...) {
+    // Function body
+    return value; // Optional
+}
+```
+
+### Basic Function
+
+```ikl
+func greet(name) {
+    return "Hello, " + name + "!";
+}
+
+var message = greet("John"); // "Hello, John!"
+```
+
+### Function with Multiple Parameters
+
+```ikl
+func add(a, b) {
+    return a + b;
+}
+
+var sum = add(5, 3); // 8
+```
+
+### Function without Parameters
+
+```ikl
+func getCurrentTime() {
+    return "12:00 PM";
+}
+
+var time = getCurrentTime();
+```
+
+### Function without Return Value
+
+If a function doesn't have a `return` statement, it implicitly returns `null`:
+
+```ikl
+func printMessage(message) {
+    println(message);
+}
+
+var result = printMessage("Hello"); // result is null
+```
+
+## Function Parameters
+
+### Required Parameters
+
+All parameters in IdzeyKL are required. If you call a function with fewer arguments than parameters, the missing arguments will be `null`:
+
+```ikl
+func greet(name, title) {
+    return "Hello, " + title + " " + name + "!";
+}
+
+var message = greet("John"); // "Hello, null John!"
+```
+
+### Parameter Types
+
+IdzeyKL is dynamically typed, so parameters can accept any type of value:
+
+```ikl
+func processValue(value) {
+    if (typeof(value) == "number") {
+        return value * 2;
+    } else if (typeof(value) == "string") {
+        return value + value;
+    }
+    return null;
+}
+
+var numResult = processValue(5);    // 10
+var strResult = processValue("Hi"); // "HiHi"
+```
+
+## Return Values
+
+### Single Return Value
+
+```ikl
+func square(n) {
+    return n * n;
+}
+
+var result = square(4); // 16
+```
+
+### Early Return
+
+You can use `return` to exit a function early:
+
+```ikl
+func isPositive(n) {
+    if (n <= 0) {
+        return false;
+    }
+    return true;
+}
+```
+
+## Function Scope
+
+Variables declared inside a function are local to that function:
+
+```ikl
+func test() {
+    var x = 10; // Local variable
+    println(x);
+}
+
+test(); // Prints 10
+println(x); // Error: x is not defined
+```
+
+## Function Best Practices
+
+1. **Use descriptive names**:
+   ```ikl
+   // Good
+   func calculateTotal(items) { ... }
+   
+   // Bad
+   func calc(x) { ... }
+   ```
+
+2. **Keep functions focused**:
+   ```ikl
+   // Good
+   func calculateArea(width, height) {
+       return width * height;
+   }
+   
+   // Bad
+   func processData(data) {
+       // Too many responsibilities
+       validateData(data);
+       calculateStatistics(data);
+       saveToDatabase(data);
+       sendNotification(data);
+   }
+   ```
+
+3. **Use meaningful parameter names**:
+   ```ikl
+   // Good
+   func greet(userName) { ... }
+   
+   // Bad
+   func greet(x) { ... }
+   ```
+
+4. **Document your functions**:
+   ```ikl
+   // Good
+   // Calculates the area of a rectangle
+   // Parameters:
+   //   width: number - The width of the rectangle
+   //   height: number - The height of the rectangle
+   // Returns: number - The area of the rectangle
+   func calculateArea(width, height) {
+       return width * height;
+   }
+   ```
+
+## Common Function Patterns
+
+### Validation Function
+```ikl
+func isValidAge(age) {
+    return age >= 0 && age <= 120;
+}
+```
+
+### Calculation Function
+```ikl
+func calculateBMI(weight, height) {
+    return weight / (height * height);
+}
+```
+
+### Transformation Function
+```ikl
+func formatName(firstName, lastName) {
+    return firstName + " " + lastName;
+}
+```
+
+### Conditional Function
+```ikl
+func getGrade(score) {
+    if (score >= 90) {
+        return "A";
+    } else if (score >= 80) {
+        return "B";
+    } else if (score >= 70) {
+        return "C";
+    } else {
+        return "F";
+    }
+}
+```
+
+## Next Steps
+
+Now that you understand functions, you can learn about [Arrays](/idzeykl/arrays) to work with collections of data. 

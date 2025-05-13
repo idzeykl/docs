@@ -1,0 +1,95 @@
+---
+title: 'Basic Syntax'
+description: 'Learn about the fundamental syntax rules and data types in IdzeyKL'
+---
+
+# Basic Syntax
+
+IdzeyKL has a straightforward syntax that's easy to learn and use. This section covers the basic syntax rules and data types supported by the language.
+
+## Syntax Rules
+
+- Each statement must end with a semicolon (`;`)
+- Code blocks are enclosed in curly braces (`{}`)
+- Comments start with double forward slashes (`//`)
+- Identifiers (variable and function names) can contain letters, numbers, and underscores, but cannot start with a number
+
+Example:
+```ikl
+// This is a comment
+var x = 10; // Variable declaration
+```
+
+## Data Types
+
+IdzeyKL supports the following data types:
+
+### Numbers
+
+- **Integers (INTEGER)**: `10`, `42`, `-5`
+- **Floating-point numbers (NUMBER)**: `3.14`, `-0.5`, `1.0`
+
+### Strings
+
+Strings are sequences of characters enclosed in double quotes:
+```ikl
+var message = "Hello, World!";
+var number = "123"; // This is a string, not a number
+```
+
+### Booleans
+
+Boolean values are either `true` or `false`:
+```ikl
+var isActive = true;
+var isComplete = false;
+```
+
+### Arrays
+
+Arrays are ordered collections of values:
+```ikl
+var numbers = {1, 2, 3};
+var mixed = {"a", 1, true};
+```
+
+### Null
+
+The special value `null` represents the absence of a value:
+```ikl
+var empty = null;
+```
+
+### Functions
+
+Functions are first-class citizens in IdzeyKL:
+```ikl
+func add(a, b) {
+    return a + b;
+}
+```
+
+## Type Conversion
+
+IdzeyKL automatically converts between types when needed:
+
+1. **Numeric Conversions**:
+   - Strings containing numbers are automatically converted to numbers in arithmetic operations (except `+`)
+   - Boolean values convert to numbers: `true` → `1`, `false` → `0`
+   - `null` converts to `0`
+
+2. **String Conversions**:
+   - Any value can be converted to a string using the `+` operator
+   - Numbers convert to their string representation
+   - Booleans convert to `"true"` or `"false"`
+   - `null` converts to `"null"`
+
+3. **Boolean Conversions**:
+   - Numbers: `0` → `false`, any non-zero number → `true`
+   - Strings: empty string `""` → `false`, non-empty string → `true`
+   - Arrays: empty array `{}` → `false`, non-empty array → `true`
+   - `null` → `false`
+
+## Next Steps
+
+Now that you understand the basic syntax and data types, you can learn about [Variables and Operators](/idzeykl/variables) to start writing more complex programs. 

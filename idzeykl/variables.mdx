@@ -1,0 +1,140 @@
+---
+title: 'Variables and Operators'
+description: 'Learn how to work with variables and operators in IdzeyKL'
+---
+
+# Variables and Operators
+
+This section covers how to work with variables and the various operators available in IdzeyKL.
+
+## Variables
+
+Variables in IdzeyKL are declared using the `var` keyword, followed by the variable name and an optional initial value.
+
+### Variable Declaration
+
+```ikl
+var x;           // Declaration without initialization (value is null)
+var y = 10;      // Declaration with initialization
+var name = "John"; // String variable
+var isActive = true; // Boolean variable
+var numbers = {1, 2, 3}; // Array variable
+```
+
+### Variable Naming Rules
+
+- Can contain letters, numbers, and underscores
+- Cannot start with a number
+- Are case-sensitive
+- Cannot use reserved keywords
+
+## Operators
+
+### Arithmetic Operators
+
+- `+` : Addition (also used for string concatenation)
+- `-` : Subtraction
+- `*` : Multiplication
+- `/` : Division
+- `%` : Modulo (remainder)
+
+Examples:
+```ikl
+var a = 10 + 5;    // 15
+var b = 10 - 5;    // 5
+var c = 10 * 5;    // 50
+var d = 10 / 5;    // 2
+var e = 10 % 3;    // 1
+var f = "Hello" + " World"; // "Hello World"
+```
+
+### Comparison Operators
+
+- `==` : Equal to
+- `!=` : Not equal to
+- `<` : Less than
+- `<=` : Less than or equal to
+- `>` : Greater than
+- `>=` : Greater than or equal to
+
+Examples:
+```ikl
+var x = 5;
+var y = 10;
+
+var isEqual = x == y;      // false
+var isNotEqual = x != y;   // true
+var isLess = x < y;        // true
+var isLessOrEqual = x <= y; // true
+var isGreater = x > y;     // false
+var isGreaterOrEqual = x >= y; // false
+```
+
+### Logical Operators
+
+- `&&` : Logical AND
+- `||` : Logical OR
+- `!` : Logical NOT
+
+Examples:
+```ikl
+var a = true;
+var b = false;
+
+var andResult = a && b;    // false
+var orResult = a || b;     // true
+var notResult = !a;        // false
+```
+
+### Assignment Operators
+
+- `=` : Simple assignment
+- `+=` : Addition assignment
+- `-=` : Subtraction assignment
+- `*=` : Multiplication assignment
+- `/=` : Division assignment
+- `%=` : Modulo assignment
+
+Examples:
+```ikl
+var x = 10;
+x += 5;    // x is now 15
+x -= 3;    // x is now 12
+x *= 2;    // x is now 24
+x /= 4;    // x is now 6
+x %= 4;    // x is now 2
+```
+
+### Unary Operators
+
+- `-` : Unary minus
+- `!` : Logical negation
+
+Examples:
+```ikl
+var x = 10;
+var y = -x;    // y is -10
+var z = !true; // z is false
+```
+
+## Operator Precedence
+
+Operators are evaluated in the following order (from highest to lowest precedence):
+
+1. Unary operators (`-`, `!`)
+2. Multiplication, division, modulo (`*`, `/`, `%`)
+3. Addition, subtraction (`+`, `-`)
+4. Comparison operators (`<`, `<=`, `>`, `>=`)
+5. Equality operators (`==`, `!=`)
+6. Logical AND (`&&`)
+7. Logical OR (`||`)
+8. Assignment operators (`=`, `+=`, `-=`, etc.)
+
+You can use parentheses `()` to override the default precedence:
+```ikl
+var result = (2 + 3) * 4; // 20, not 14
+```
+
+## Next Steps
+
+Now that you understand variables and operators, you can learn about [Control Flow](/idzeykl/control-flow) to create more complex program logic. 

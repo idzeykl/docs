@@ -1,0 +1,13 @@
+{
+  "name": "idzeykl-docs",
+  "version": "1.0.0",
+  "description": "Documentation for the IdzeyKL programming language",
+  "scripts": {
+    "start": "mintlify dev",
+    "build": "mintlify build",
+    "deploy": "mintlify deploy"
+  },
+  "dependencies": {
+    "mintlify": "^3.0.0"
+  }
+} 

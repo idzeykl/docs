@@ -1,0 +1,255 @@
+---
+title: 'Dynamic Typing'
+description: 'Learn about type conversion and dynamic typing in IdzeyKL'
+---
+
+# Dynamic Typing
+
+IdzeyKL uses dynamic typing, which means that variable types are determined at runtime and can change during program execution. This section explains how type conversion works in IdzeyKL.
+
+## Type Conversion
+
+### Numeric Conversions
+
+When performing arithmetic operations, IdzeyKL automatically converts values to numbers when possible:
+
+```ikl
+var a = "10";
+var b = 5;
+var sum = a + b;      // String concatenation: "105"
+var product = a * b;  // Numeric multiplication: 50
+```
+
+#### Boolean to Number
+```ikl
+var trueNum = true + 1;   // 2
+var falseNum = false + 1; // 1
+```
+
+#### Null to Number
+```ikl
+var nullNum = null + 5; // 5
+```
+
+### String Conversions
+
+The `+` operator performs string concatenation, converting all operands to strings:
+
+```ikl
+var num = 42;
+var str = "The answer is " + num; // "The answer is 42"
+```
+
+#### Number to String
+```ikl
+var num = 123;
+var str = "" + num; // "123"
+```
+
+#### Boolean to String
+```ikl
+var bool = true;
+var str = "" + bool; // "true"
+```
+
+#### Null to String
+```ikl
+var str = "" + null; // "null"
+```
+
+### Boolean Conversions
+
+In boolean contexts (if conditions, while loops), values are automatically converted to booleans:
+
+#### Number to Boolean
+```ikl
+if (0) { /* never executed */ }
+if (1) { /* always executed */ }
+if (-1) { /* always executed */ }
+```
+
+#### String to Boolean
+```ikl
+if ("") { /* never executed */ }
+if ("hello") { /* always executed */ }
+```
+
+#### Array to Boolean
+```ikl
+if ({}) { /* never executed */ }
+if ({1, 2, 3}) { /* always executed */ }
+```
+
+#### Null to Boolean
+```ikl
+if (null) { /* never executed */ }
+```
+
+## Type Checking
+
+### Using typeof
+
+The `typeof` operator returns the type of a value as a string:
+
+```ikl
+var num = 42;
+var str = "hello";
+var bool = true;
+var arr = {1, 2, 3};
+var n = null;
+
+println(typeof(num));  // "number"
+println(typeof(str));  // "string"
+println(typeof(bool)); // "boolean"
+println(typeof(arr));  // "array"
+println(typeof(n));    // "null"
+```
+
+### Type Checking Functions
+
+```ikl
+func isNumber(value) {
+    return typeof(value) == "number";
+}
+
+func isString(value) {
+    return typeof(value) == "string";
+}
+
+func isBoolean(value) {
+    return typeof(value) == "boolean";
+}
+
+func isArray(value) {
+    return typeof(value) == "array";
+}
+
+func isNull(value) {
+    return typeof(value) == "null";
+}
+```
+
+## Common Type Conversion Patterns
+
+### Safe Number Conversion
+```ikl
+func toNumber(value) {
+    if (typeof(value) == "number") {
+        return value;
+    }
+    if (typeof(value) == "string") {
+        var num = value * 1;
+        if (num == num) { // Check for NaN
+            return num;
+        }
+    }
+    return 0;
+}
+```
+
+### Safe String Conversion
+```ikl
+func toString(value) {
+    if (value == null) {
+        return "null";
+    }
+    return "" + value;
+}
+```
+
+### Safe Boolean Conversion
+```ikl
+func toBoolean(value) {
+    if (typeof(value) == "boolean") {
+        return value;
+    }
+    if (typeof(value) == "number") {
+        return value != 0;
+    }
+    if (typeof(value) == "string") {
+        return value != "";
+    }
+    if (typeof(value) == "array") {
+        return value.length > 0;
+    }
+    return false;
+}
+```
+
+## Best Practices
+
+1. **Be explicit about type conversions**:
+   ```ikl
+   // Good
+   var num = toNumber(input);
+   
+   // Bad
+   var num = input * 1;
+   ```
+
+2. **Check types before operations**:
+   ```ikl
+   // Good
+   if (typeof(value) == "number") {
+       result = value * 2;
+   }
+   
+   // Bad
+   result = value * 2;
+   ```
+
+3. **Use type checking functions**:
+   ```ikl
+   // Good
+   if (isNumber(value)) {
+       // Handle number
+   }
+   
+   // Bad
+   if (typeof(value) == "number") {
+       // Handle number
+   }
+   ```
+
+4. **Document expected types**:
+   ```ikl
+   // Parameters:
+   //   value: number|string - The value to convert
+   // Returns: number - The converted number
+   func convertToNumber(value) {
+       return toNumber(value);
+   }
+   ```
+
+## Common Pitfalls
+
+1. **String concatenation with numbers**:
+   ```ikl
+   // Unexpected result
+   var result = "2" + 2; // "22"
+   
+   // Correct way
+   var result = toNumber("2") + 2; // 4
+   ```
+
+2. **Boolean conversion in conditions**:
+   ```ikl
+   // Unexpected behavior
+   if ("0") { /* executed */ }
+   
+   // Correct way
+   if (toBoolean("0")) { /* not executed */ }
+   ```
+
+3. **Null handling**:
+   ```ikl
+   // Potential error
+   var result = null + 5; // 5
+   
+   // Safer way
+   var result = (null == null) ? 5 : null + 5;
+   ```
+
+## Next Steps
+
+Now that you understand dynamic typing, you can learn about [Built-in Functions](/idzeykl/built-in-functions) to use the standard library features. 

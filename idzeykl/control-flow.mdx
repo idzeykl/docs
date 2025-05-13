@@ -1,0 +1,199 @@
+---
+title: 'Control Flow'
+description: 'Learn about conditional statements and loops in IdzeyKL'
+---
+
+# Control Flow
+
+Control flow statements allow you to control the execution path of your program. IdzeyKL supports various conditional statements and loops.
+
+## Conditional Statements
+
+### If-Else Statement
+
+The `if-else` statement allows you to execute different code blocks based on conditions.
+
+```ikl
+if (condition) {
+    // Code to execute if condition is true
+} else {
+    // Code to execute if condition is false
+}
+```
+
+Example:
+```ikl
+var age = 18;
+if (age >= 18) {
+    println("Adult");
+} else {
+    println("Minor");
+}
+```
+
+You can also use the shorter form without an else block:
+```ikl
+if (condition) {
+    // Code to execute if condition is true
+}
+```
+
+### Nested If Statements
+
+You can nest if statements to create more complex conditions:
+```ikl
+var age = 20;
+var hasLicense = true;
+
+if (age >= 18) {
+    if (hasLicense) {
+        println("Can drive");
+    } else {
+        println("Need to get a license");
+    }
+} else {
+    println("Too young to drive");
+}
+```
+
+## Loops
+
+### For Loop
+
+The `for` loop is used when you know how many times you want to execute a block of code.
+
+```ikl
+for (initialization; condition; increment) {
+    // Code to execute
+}
+```
+
+Example:
+```ikl
+for (var i = 0; i < 5; i = i + 1) {
+    println(i);
+}
+```
+
+### While Loop
+
+The `while` loop is used when you want to execute a block of code as long as a condition is true.
+
+```ikl
+while (condition) {
+    // Code to execute
+}
+```
+
+Example:
+```ikl
+var i = 0;
+while (i < 5) {
+    println(i);
+    i = i + 1;
+}
+```
+
+### Loop Control Statements
+
+#### Break
+
+The `break` statement exits the loop immediately:
+```ikl
+for (var i = 0; i < 10; i = i + 1) {
+    if (i == 5) {
+        break;
+    }
+    println(i);
+}
+```
+
+#### Continue
+
+The `continue` statement skips the rest of the current iteration and continues with the next one:
+```ikl
+for (var i = 0; i < 5; i = i + 1) {
+    if (i == 2) {
+        continue;
+    }
+    println(i);
+}
+```
+
+## Common Patterns
+
+### Counting Up
+```ikl
+for (var i = 0; i < n; i = i + 1) {
+    // Code
+}
+```
+
+### Counting Down
+```ikl
+for (var i = n - 1; i >= 0; i = i - 1) {
+    // Code
+}
+```
+
+### Iterating Over Arrays
+```ikl
+var numbers = {1, 2, 3, 4, 5};
+for (var i = 0; i < numbers.length; i = i + 1) {
+    println(numbers[i]);
+}
+```
+
+### Conditional Loop
+```ikl
+var found = false;
+var i = 0;
+while (!found && i < array.length) {
+    if (array[i] == target) {
+        found = true;
+    }
+    i = i + 1;
+}
+```
+
+## Best Practices
+
+1. **Use meaningful conditions**:
+   ```ikl
+   // Good
+   if (age >= 18) { ... }
+   
+   // Bad
+   if (age > 17) { ... }
+   ```
+
+2. **Avoid deep nesting**:
+   ```ikl
+   // Good
+   if (!isValid) {
+       return;
+   }
+   // Main logic here
+   
+   // Bad
+   if (isValid) {
+       // Main logic here
+   }
+   ```
+
+3. **Use appropriate loop types**:
+   - Use `for` when you know the number of iterations
+   - Use `while` when the number of iterations is unknown
+
+4. **Initialize variables before loops**:
+   ```ikl
+   // Good
+   var sum = 0;
+   for (var i = 0; i < n; i = i + 1) {
+       sum = sum + i;
+   }
+   ```
+
+## Next Steps
+
+Now that you understand control flow, you can learn about [Functions](/idzeykl/functions) to organize your code into reusable blocks. 

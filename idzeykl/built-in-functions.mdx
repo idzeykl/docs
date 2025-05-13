@@ -1,0 +1,301 @@
+---
+title: 'Built-in Functions'
+description: 'Learn about the standard library functions in IdzeyKL'
+---
+
+# Built-in Functions
+
+IdzeyKL provides several built-in functions that are always available in your programs. These functions provide common operations and utilities.
+
+## Output Functions
+
+### println(value)
+
+Prints a value to the console with a newline character at the end.
+
+```ikl
+println("Hello, World!"); // Prints: Hello, World!
+println(42);             // Prints: 42
+println(true);           // Prints: true
+```
+
+### print(value)
+
+Prints a value to the console without a newline character.
+
+```ikl
+print("Hello, ");
+print("World!");
+// Prints: Hello, World!
+```
+
+## Type Functions
+
+### typeof(value)
+
+Returns the type of a value as a string.
+
+```ikl
+typeof(42);      // "number"
+typeof("hello"); // "string"
+typeof(true);    // "boolean"
+typeof({1, 2});  // "array"
+typeof(null);    // "null"
+```
+
+## Array Functions
+
+### array.length
+
+Returns the number of elements in an array.
+
+```ikl
+var numbers = {1, 2, 3, 4, 5};
+var count = numbers.length; // 5
+```
+
+## String Functions
+
+### string.length
+
+Returns the length of a string.
+
+```ikl
+var str = "Hello";
+var len = str.length; // 5
+```
+
+## Math Functions
+
+### abs(number)
+
+Returns the absolute value of a number.
+
+```ikl
+abs(-5);  // 5
+abs(5);   // 5
+abs(0);   // 0
+```
+
+### min(a, b)
+
+Returns the smaller of two numbers.
+
+```ikl
+min(5, 3);  // 3
+min(-1, 1); // -1
+```
+
+### max(a, b)
+
+Returns the larger of two numbers.
+
+```ikl
+max(5, 3);  // 5
+max(-1, 1); // 1
+```
+
+### pow(base, exponent)
+
+Returns the base raised to the power of the exponent.
+
+```ikl
+pow(2, 3);  // 8
+pow(3, 2);  // 9
+```
+
+### sqrt(number)
+
+Returns the square root of a number.
+
+```ikl
+sqrt(16); // 4
+sqrt(2);  // 1.4142135623730951
+```
+
+### round(number)
+
+Rounds a number to the nearest integer.
+
+```ikl
+round(3.7);  // 4
+round(3.2);  // 3
+round(-3.7); // -4
+```
+
+### floor(number)
+
+Returns the largest integer less than or equal to a number.
+
+```ikl
+floor(3.7);  // 3
+floor(3.2);  // 3
+floor(-3.7); // -4
+```
+
+### ceil(number)
+
+Returns the smallest integer greater than or equal to a number.
+
+```ikl
+ceil(3.7);  // 4
+ceil(3.2);  // 4
+ceil(-3.7); // -3
+```
+
+## Random Functions
+
+### random()
+
+Returns a random number between 0 (inclusive) and 1 (exclusive).
+
+```ikl
+var r = random(); // A number between 0 and 1
+```
+
+### randomInt(min, max)
+
+Returns a random integer between min (inclusive) and max (exclusive).
+
+```ikl
+var r = randomInt(1, 10); // A number between 1 and 9
+```
+
+## Date and Time Functions
+
+### now()
+
+Returns the current timestamp in milliseconds since the Unix epoch.
+
+```ikl
+var timestamp = now();
+```
+
+### formatDate(timestamp, format)
+
+Formats a timestamp according to the specified format string.
+
+```ikl
+var timestamp = now();
+var date = formatDate(timestamp, "YYYY-MM-DD"); // e.g., "2024-03-14"
+```
+
+## File System Functions
+
+### readFile(path)
+
+Reads the contents of a file as a string.
+
+```ikl
+var content = readFile("data.txt");
+```
+
+### writeFile(path, content)
+
+Writes content to a file.
+
+```ikl
+writeFile("output.txt", "Hello, World!");
+```
+
+## Network Functions
+
+### httpGet(url)
+
+Makes an HTTP GET request to the specified URL.
+
+```ikl
+var response = httpGet("https://api.example.com/data");
+```
+
+### httpPost(url, data)
+
+Makes an HTTP POST request to the specified URL with the given data.
+
+```ikl
+var data = {"name": "John", "age": 30};
+var response = httpPost("https://api.example.com/users", data);
+```
+
+## Best Practices
+
+1. **Handle errors**:
+   ```ikl
+   var content = readFile("data.txt");
+   if (content == null) {
+       println("Error reading file");
+   }
+   ```
+
+2. **Check return types**:
+   ```ikl
+   var response = httpGet("https://api.example.com/data");
+   if (typeof(response) == "string") {
+       // Process response
+   }
+   ```
+
+3. **Use appropriate functions**:
+   ```ikl
+   // Good
+   var absValue = abs(-5);
+   
+   // Bad
+   var absValue = (-5 < 0) ? -(-5) : -5;
+   ```
+
+4. **Document function usage**:
+   ```ikl
+   // Reads user data from a file
+   // Parameters:
+   //   filename: string - The name of the file to read
+   // Returns: object|null - The user data or null if an error occurs
+   func readUserData(filename) {
+       var content = readFile(filename);
+       if (content == null) {
+           return null;
+       }
+       // Parse and return data
+   }
+   ```
+
+## Common Patterns
+
+### Random Number in Range
+```ikl
+func randomInRange(min, max) {
+    return min + random() * (max - min);
+}
+```
+
+### Format Currency
+```ikl
+func formatCurrency(amount) {
+    return "$" + round(amount * 100) / 100;
+}
+```
+
+### Calculate Age
+```ikl
+func calculateAge(birthDate) {
+    var now = now();
+    var age = floor((now - birthDate) / (365 * 24 * 60 * 60 * 1000));
+    return age;
+}
+```
+
+### Read JSON File
+```ikl
+func readJsonFile(filename) {
+    var content = readFile(filename);
+    if (content == null) {
+        return null;
+    }
+    // Parse JSON content
+    return parsedContent;
+}
+```
+
+## Next Steps
+
+Now that you understand the built-in functions, you can explore the [Examples](/idzeykl/examples) section to see how to use these functions in real-world scenarios. 
