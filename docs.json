@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "IdzeyKL Documentation",
   "colors": {
-    "primary": "#bdbdbd",
-    "light": "#f5f5f5",
-    "dark": "#757575"
+    "primary": "#FFD600",
+    "light": "#FFF9C4",
+    "dark": "#FFA000"
   },
   "favicon": "/favicon.svg",
   "navigation": {
