@@ -1,99 +1,45 @@
 ---
-title: 'Массивы'
-description: 'Узнайте, как работать с массивами в IdzeyKL'
+title: "Массивы"
+slug: "/massivy"
 ---
 
-# Массивы
+## Массивы
 
-Массивы — это упорядоченные коллекции значений. Они могут содержать значения любых типов, включая другие массивы.
+Массивы - это упорядоченные коллекции значений. Они могут содержать значения любых типов, включая другие массивы.
 
-## Создание массива
+### Создание массива
 
 Массивы создаются с помощью фигурных скобок `{}`:
 
-```ikl
+```js
 var numbers = {1, 2, 3, 4, 5};
 var mixed = {1, "two", true, null};
-var empty = {};
 ```
 
-## Доступ к элементам массива
+### Доступ к элементам массива
 
 Доступ к элементам массива осуществляется с помощью квадратных скобок `[]` и индекса (начиная с 0):
 
-```ikl
+```js
 var numbers = {10, 20, 30, 40, 50};
-var first = numbers[0];  // 10
-var third = numbers[2];  // 30
-var last = numbers[4];   // 50
+var first = numbers[0]; // 10
+var third = numbers[2]; // 30
 ```
 
-## Изменение элементов массива
+### Изменение элементов массива
 
 Элементы массива можно изменять, присваивая новые значения:
 
-```ikl
+```js
 var numbers = {10, 20, 30};
-numbers[1] = 25;  // numbers теперь {10, 25, 30}
+numbers[1] = 25; // Теперь массив: {10, 25, 30}
 ```
 
-### Длина массива
-
-Свойство `length` возвращает количество элементов в массиве:
-
-```ikl
-var numbers = {1, 2, 3, 4, 5};
-var count = numbers.length;  // 5
-```
-
-## Операции с массивами
-
-### Перебор массива
-
-С помощью цикла for:
-```ikl
-var numbers = {1, 2, 3, 4, 5};
-for (var i = 0; i < numbers.length; i = i + 1) {
-    println(numbers[i]);
-}
-```
-
-### Поиск элемента
-
-```ikl
-func findElement(array, target) {
-    for (var i = 0; i < array.length; i = i + 1) {
-        if (array[i] == target) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-var numbers = {10, 20, 30, 40, 50};
-var index = findElement(numbers, 30);  // 2
-```
-
-### Суммирование элементов
-
-```ikl
-func sum(array) {
-    var total = 0;
-    for (var i = 0; i < array.length; i = i + 1) {
-        total = total + array[i];
-    }
-    return total;
-}
-
-var numbers = {1, 2, 3, 4, 5};
-println("Сумма элементов массива: " + sum(numbers)); // 15
-```
-
-## Многомерные массивы
+### Многомерные массивы
 
 Массивы могут содержать другие массивы, создавая многомерные структуры:
 
-```ikl
+```js
 var matrix = {
     {1, 2, 3},
     {4, 5, 6},
@@ -102,120 +48,3 @@ var matrix = {
 
 var element = matrix[1][2]; // 6
 ```
-
-### Создание двумерного массива
-
-```ikl
-func create2DArray(rows, cols) {
-    var array = {};
-    for (var i = 0; i < rows; i = i + 1) {
-        var row = {};
-        for (var j = 0; j < cols; j = j + 1) {
-            row[j] = 0;
-        }
-        array[i] = row;
-    }
-    return array;
-}
-
-var grid = create2DArray(3, 3);
-```
-
-## Типовые задачи с массивами
-
-### Поиск максимального значения
-
-```ikl
-func findMax(array) {
-    if (array.length == 0) {
-        return null;
-    }
-    var max = array[0];
-    for (var i = 1; i < array.length; i = i + 1) {
-        if (array[i] > max) {
-            max = array[i];
-        }
-    }
-    return max;
-}
-```
-
-### Поиск минимального значения
-
-```ikl
-func findMin(array) {
-    if (array.length == 0) {
-        return null;
-    }
-    var min = array[0];
-    for (var i = 1; i < array.length; i = i + 1) {
-        if (array[i] < min) {
-            min = array[i];
-        }
-    }
-    return min;
-}
-```
-
-### Подсчёт количества вхождений
-
-```ikl
-func countOccurrences(array, target) {
-    var count = 0;
-    for (var i = 0; i < array.length; i = i + 1) {
-        if (array[i] == target) {
-            count = count + 1;
-        }
-    }
-    return count;
-}
-```
-
-## Рекомендации по работе с массивами
-
-1. **Проверяйте границы массива**:
-   ```ikl
-   func safeGet(array, index) {
-       if (index >= 0 && index < array.length) {
-           return array[index];
-       }
-       return null;
-   }
-   ```
-2. **Инициализируйте массивы корректно**:
-   ```ikl
-   // Хорошо
-   var numbers = {1, 2, 3};
-   
-   // Плохо
-   var numbers = {};
-   numbers[0] = 1;
-   numbers[1] = 2;
-   numbers[2] = 3;
-   ```
-3. **Используйте осмысленные имена переменных**:
-   ```ikl
-   // Хорошо
-   var studentScores = {85, 90, 95};
-   
-   // Плохо
-   var a = {85, 90, 95};
-   ```
-4. **Документируйте операции с массивами**:
-   ```ikl
-   // Вычисляет среднее значение массива чисел
-   // Параметры:
-   //   numbers: array - массив чисел
-   // Возвращает: number - среднее значение
-   func calculateAverage(numbers) {
-       var sum = 0;
-       for (var i = 0; i < numbers.length; i = i + 1) {
-           sum = sum + numbers[i];
-       }
-       return sum / numbers.length;
-   }
-   ```
-
-## Дальнейшие шаги
-
-Теперь вы знаете, как работать с массивами. Перейдите к разделу [Динамическая типизация](/idzeykl/dynamic-typing), чтобы узнать, как IdzeyKL работает с типами данных. 

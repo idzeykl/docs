@@ -1,1 +1,84 @@
- 
+---
+title: "Примеры программ"
+slug: "/primery-programm"
+---
+
+## Примеры программ
+
+### Пример 1: Вычисление факториала
+
+```js
+func factorial(n) {
+    if (n <= 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+var n = 5;
+println("Факториал " + n + " равен " + factorial(n)); // Выводит: Факториал 5 равен 120
+```
+
+### Пример 2: Работа с массивами
+
+```js
+func sum(array) {
+    var total = 0;
+    loop (var i = 0; i < array.length; i = i + 1) {
+        total = total + array[i];
+    }
+    return total;
+}
+
+var numbers = {1, 2, 3, 4, 5};
+println("Сумма элементов массива: " + sum(numbers)); // Выводит: Сумма элементов массива: 15
+```  
+
+### Пример 3: Динамическая типизация
+
+```js
+var a = 10;
+var b = "20";
+var c = a + b;  // Строковая конкатенация: "1020"
+println("a + b = " + c);
+
+var d = a * b;  // Числовое умножение: 200
+println("a * b = " + d);
+
+var e = 10 / 2; // Целочисленное деление: 5
+println("10 / 2 = " + e);
+
+var f = 10 / 3; // Деление с плавающей точкой: 3.333...
+println("10 / 3 = " + f);
+```  
+
+### Пример 4: Условные операторы и циклы
+
+```js
+func isPrime(n) {
+    if (n <= 1) {
+        return false;
+    }
+    if (n <= 3) {
+        return true;
+    }
+    if (n % 2 == 0 || n % 3 == 0) {
+        return false;
+    }
+
+    var i = 5;
+    loop (i * i <= n) {
+        if (n % i == 0 || n % (i + 2) == 0) {
+            return false;
+        }
+        i = i + 6;
+    }
+    return true;
+}
+
+loop (var i = 1; i <= 20; i = i + 1) {
+    if (isPrime(i)) {
+        println(i + " - простое число");
+    }
+}
+```  

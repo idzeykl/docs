@@ -1,14 +1,14 @@
 ---
-title: 'Функции'
-description: 'Объявление и использование функций в IdzeyKL (строго по INSTRUCTIONS.md)'
+title: "Функции"
+slug: "/funkcii"
 ---
 
-# Функции
+## Функции
 
 Функции объявляются с помощью ключевого слова `func`, за которым следует имя функции, список параметров в круглых скобках и тело функции в фигурных скобках.
 
 Синтаксис:
-```
+```js
 func имя_функции(параметр1, параметр2, ...) {
     // Тело функции
     return значение; // Опционально
@@ -16,7 +16,7 @@ func имя_функции(параметр1, параметр2, ...) {
 ```
 
 Пример:
-```
+```js
 func add(a, b) {
     return a + b;
 }
@@ -25,200 +25,3 @@ var result = add(5, 3); // result = 8
 ```
 
 Функции могут возвращать значения с помощью оператора `return`. Если функция не содержит оператора `return`, она неявно возвращает `null`.
-
-## Объявление функции
-
-Функции объявляются с помощью ключевого слова `func`, за которым следует имя функции, список параметров в круглых скобках и тело функции в фигурных скобках.
-
-```ikl
-func имя_функции(параметр1, параметр2, ...) {
-    // Тело функции
-    return значение; // Опционально
-}
-```
-
-### Пример функции
-
-```ikl
-func add(a, b) {
-    return a + b;
-}
-
-var result = add(5, 3); // result = 8
-```
-
-### Функция без параметров
-
-```ikl
-func sayHello() {
-    println("Привет!");
-}
-
-sayHello();
-```
-
-### Функция без return
-
-Если функция не содержит оператора `return`, она неявно возвращает `null`:
-
-```ikl
-func printMessage(message) {
-    println(message);
-}
-
-var result = printMessage("Hello"); // result = null
-```
-
-## Параметры функции
-
-Все параметры в IdzeyKL обязательны. Если при вызове функции указано меньше аргументов, недостающие параметры будут равны `null`.
-
-```ikl
-func greet(name, title) {
-    return "Hello, " + title + " " + name + "!";
-}
-
-var message = greet("John"); // "Hello, null John!"
-```
-
-## Динамическая типизация параметров
-
-Параметры функции могут принимать значения любого типа:
-
-```ikl
-func processValue(value) {
-    if (typeof(value) == "number") {
-        return value * 2;
-    } else if (typeof(value) == "string") {
-        return value + value;
-    }
-    return null;
-}
-
-var numResult = processValue(5);    // 10
-var strResult = processValue("Hi"); // "HiHi"
-```
-
-## Возврат значения
-
-Функции могут возвращать значения с помощью оператора `return`. Если return не указан, возвращается `null`.
-
-```ikl
-func square(n) {
-    return n * n;
-}
-
-var result = square(4); // 16
-```
-
-### Ранний выход из функции
-
-Можно использовать `return` для досрочного выхода:
-
-```ikl
-func isPositive(n) {
-    if (n <= 0) {
-        return false;
-    }
-    return true;
-}
-```
-
-## Область видимости
-
-Переменные, объявленные внутри функции, доступны только в этой функции:
-
-```ikl
-func test() {
-    var x = 10; // Локальная переменная
-    println(x);
-}
-
-test(); // Выведет 10
-println(x); // Ошибка: x не определена
-```
-
-## Рекомендации по функциям
-
-1. **Используйте осмысленные имена**:
-   ```ikl
-   // Хорошо
-   func calculateTotal(items) { ... }
-   // Плохо
-   func calc(x) { ... }
-   ```
-2. **Делайте функции короткими и сфокусированными**:
-   ```ikl
-   // Хорошо
-   func calculateArea(width, height) {
-       return width * height;
-   }
-   // Плохо
-   func processData(data) {
-       // Слишком много задач
-       validateData(data);
-       calculateStatistics(data);
-       saveToDatabase(data);
-       sendNotification(data);
-   }
-   ```
-3. **Используйте осмысленные имена параметров**:
-   ```ikl
-   // Хорошо
-   func greet(userName) { ... }
-   // Плохо
-   func greet(x) { ... }
-   ```
-4. **Документируйте функции**:
-   ```ikl
-   // Вычисляет площадь прямоугольника
-   // Параметры:
-   //   width: number - ширина
-   //   height: number - высота
-   // Возвращает: number - площадь
-   func calculateArea(width, height) {
-       return width * height;
-   }
-   ```
-
-## Типовые шаблоны функций
-
-### Проверка значения
-```ikl
-func isValidAge(age) {
-    return age >= 0 && age <= 120;
-}
-```
-
-### Вычисление значения
-```ikl
-func calculateBMI(weight, height) {
-    return weight / (height * height);
-}
-```
-
-### Форматирование
-```ikl
-func formatName(firstName, lastName) {
-    return firstName + " " + lastName;
-}
-```
-
-### Условная логика
-```ikl
-func getGrade(score) {
-    if (score >= 90) {
-        return "A";
-    } else if (score >= 80) {
-        return "B";
-    } else if (score >= 70) {
-        return "C";
-    } else {
-        return "F";
-    }
-}
-```
-
-## Дальнейшие шаги
-
-Теперь вы знаете, как создавать и использовать функции. Перейдите к разделу [Массивы](/idzeykl/arrays), чтобы узнать о работе с коллекциями данных. 

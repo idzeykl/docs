@@ -17,13 +17,15 @@
             "group": "Введение и основы",
             "pages": [
               "docs/index",
-              "docs/syntax"
+              "docs/syntax",
+              "docs/data-types"  
             ]
           },
           {
             "group": "Базовые конструкции",
             "pages": [
               "docs/variables",
+              "docs/operators", 
               "docs/control-flow",
               "docs/functions"
             ]
